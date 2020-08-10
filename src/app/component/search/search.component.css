@@ -1,0 +1,22 @@
+.main-div{
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+
+mat-form-field,input{
+    width: 100%;
+    margin: 2px;
+}
+
+button{
+    left: 40%;
+}
+
+.center {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}

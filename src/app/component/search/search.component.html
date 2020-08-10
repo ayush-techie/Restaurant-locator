@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+    <span>Restaurant Locator</span>
+</mat-toolbar>
+
+<mat-card class="main-div">
+    <form [formGroup]="geoData" (submit)="submit()">
+        <mat-form-field>
+            <input matInput value='-73.93' type="number" formControlName="lat" placeholder="Latitude">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput value='40.82' type="number" formControlName="long" placeholder="Longitude">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" formControlName="dist" placeholder="Distance">
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!geoData.valid">Search</button>
+    </form>
+
+</mat-card>
+<div class='center' *ngIf='loading'>
+    <p>Loading...</p>
+    <mat-spinner></mat-spinner>
+</div>
+<div style="text-align: center;"*ngIf='restaurants && restaurants.length==0'>
+    <p>No results found</p>
+</div>
+
+<div class='center' *ngIf='restaurants && restaurants.length!=0'>
+    <h2 style="text-align: center;">List of Restaurants</h2>
+    <mat-card class='main-div' style='margin:10px' *ngFor='let r of restaurants'>
+        <p><span class="material-icons">
+            local_dining
+            </span><b>{{r.name}}</b></p>
+        <p><span class="material-icons">
+            home
+            </span>Address: {{r.address.building}}, {{r.address.street}}, ZIP: {{r.address.zipcode}}</p>
+        <p><span class="material-icons">
+            menu_book
+            </span>Cuisine: {{r.cuisine}}</p>
+    </mat-card>
+</div>
